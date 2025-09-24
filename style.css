@@ -174,48 +174,62 @@ nav-btn:active {
   background: rgba(76, 175, 80, 0.3);
   border-color: rgba(76, 175, 80, 0.5);
 }
+
+/* Şehir önerileri listesi için stil */
+#suggestions {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 5px;
+    width: 100%;
+}
+
+#suggestions li {
+    cursor: pointer;
+    padding: 8px 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#suggestions li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
 /* Responsive Tasarım için Medya Sorguları */
 
 /* Mobil cihazlar (600px ve altı) için stiller */
 @media (max-width: 600px) {
   .app {
-    width: 90%; /* Uygulama genişliğini ekranın %90'ına ayarla */
-    padding: 20px; /* İç boşluğu azalt */
+    width: 90%; 
+    padding: 20px; 
     margin-top: 20px;
-    box-shadow: 10px 15px 8px black; /* Gölgeyi küçült */
+    box-shadow: 10px 15px 8px black;
   }
 
   .nav-controls {
-    flex-direction: column; /* Kontrolleri dikey olarak sırala */
-    bottom: 10px; /* Ekranın altına yaklaştır */
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%; /* Kontrol çubuğunun genişliğini ayarla */
+    width: 90%;
     padding: 10px;
-    gap: 10px;
+    gap: 8px; 
   }
   
-  .slide-indicators {
-    order: 1; /* Göstergeleri en üste taşı */
-  }
-  
-  .autoplay-btn {
-    order: 3; /* Otomatik oynatma düğmesini en alta taşı */
-  }
-  
-  #prevBtn {
-    order: 2; /* Önceki butonu ortaya taşı */
-  }
-  
-  #nextBtn {
-    order: 2; /* Sonraki butonu ortaya taşı */
-  }
-
   .degree {
-    font-size: 50px; /* Derece font boyutunu küçült */
+    font-size: 50px; 
   }
 
   .cityName {
-    font-size: 30px; /* Şehir adı font boyutunu küçült */
+    font-size: 30px; 
+  }
+  
+  .nav-btn {
+    padding: 10px; 
+    font-size: 16px;
   }
 }
