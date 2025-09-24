@@ -174,3 +174,48 @@ nav-btn:active {
   background: rgba(76, 175, 80, 0.3);
   border-color: rgba(76, 175, 80, 0.5);
 }
+/* Responsive Tasarım için Medya Sorguları */
+
+/* Mobil cihazlar (600px ve altı) için stiller */
+@media (max-width: 600px) {
+  .app {
+    width: 90%; /* Uygulama genişliğini ekranın %90'ına ayarla */
+    padding: 20px; /* İç boşluğu azalt */
+    margin-top: 20px;
+    box-shadow: 10px 15px 8px black; /* Gölgeyi küçült */
+  }
+
+  .nav-controls {
+    flex-direction: column; /* Kontrolleri dikey olarak sırala */
+    bottom: 10px; /* Ekranın altına yaklaştır */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; /* Kontrol çubuğunun genişliğini ayarla */
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .slide-indicators {
+    order: 1; /* Göstergeleri en üste taşı */
+  }
+  
+  .autoplay-btn {
+    order: 3; /* Otomatik oynatma düğmesini en alta taşı */
+  }
+  
+  #prevBtn {
+    order: 2; /* Önceki butonu ortaya taşı */
+  }
+  
+  #nextBtn {
+    order: 2; /* Sonraki butonu ortaya taşı */
+  }
+
+  .degree {
+    font-size: 50px; /* Derece font boyutunu küçült */
+  }
+
+  .cityName {
+    font-size: 30px; /* Şehir adı font boyutunu küçült */
+  }
+}
