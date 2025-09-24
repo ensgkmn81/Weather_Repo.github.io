@@ -2,19 +2,40 @@ const searchInput = document.querySelector("#searchInput");
 const cityNameEl = document.querySelector(".cityName");
 const degreeEl = document.querySelector(".degree");
 const weatherEl = document.querySelector(".weather");
+const suggestionsEl = document.getElementById("suggestions");
 
-searchInput.addEventListener("keypress", findWeatherInfo);
+searchInput.addEventListener("input", searchCities); // Harf harf arama için
+searchInput.addEventListener("keypress", findWeatherInfo); // Enter tuşu için
 
-const weatherAPI = new WeatherAPI(); //CLASS'ın içindeki methoda erişim için nesne tanımladık.
+const weatherAPI = new WeatherAPI();
 
+// Bu fonksiyon, arama çubuğuna her harf girildiğinde çalışır ve şehir önerilerini getirir.
+async function searchCities() {
+  const query = searchInput.value.trim();
+
+  // En az 3 harf girilmesini bekliyoruz
+  if (query.length < 3) {
+    suggestionsEl.innerHTML = '';
+    return;
+  }
+
+  try {
+    const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${weatherAPI.apiKey}`);
+    const data = await response.json();
+    displaySuggestions(data);
+  } catch (error) {
+    console.error("Şehir arama hatası:", error);
+    suggestionsEl.innerHTML = '';
+  }
+}
+
+// Bu fonksiyon, "Enter" tuşuna basıldığında çalışır ve doğrudan hava durumu bilgisini getirir.
 function findWeatherInfo(e) {
-  if (e.keyCode == `13`) {
-    //ASCI tablosunda enter tuşu '13'e karşılık geliyor.//Ezberleme console ile deneyerek de bulabilirsin.
-    const cityName = searchInput.value.trim(); //İçeri giren değeri boşluksuz yakala.
+  if (e.keyCode === 13) {
+    const cityName = searchInput.value.trim();
     weatherAPI
-      .getWeatherInfo(cityName) //methoda cityName ile gitti istek attı.
+      .getWeatherInfo(cityName)
       .then((data) => {
-        console.log(data);
         display(data);
       })
       .catch((err) => {
@@ -23,9 +44,36 @@ function findWeatherInfo(e) {
       });
   }
 }
+
+// Bu fonksiyon, API'den gelen şehir önerilerini ekranda listeler.
+function displaySuggestions(cities) {
+  suggestionsEl.innerHTML = '';
+
+  if (cities.length === 0) {
+    return;
+  }
+
+  cities.forEach(city => {
+    const li = document.createElement("li");
+    li.textContent = `${city.name}, ${city.country}`;
+    li.addEventListener("click", () => {
+      searchInput.value = city.name;
+      suggestionsEl.innerHTML = ''; // Listeyi gizle
+      // Seçilen şehrin hava durumu bilgisini almak için yeni bir istek gönder
+      weatherAPI.getWeatherInfo(city.name).then(data => {
+        display(data);
+      }).catch(err => {
+        alert("Hava durumu bilgisi alınamadı!");
+        console.log(err);
+      });
+    });
+    suggestionsEl.appendChild(li);
+  });
+}
+
+// Hava durumu bilgisini ekrana yansıtan ana fonksiyon.
 function display(data) {
   if (data.cod === 200) {
-    //? 200 başarılı olduğu anlamına geliyor(404-hata//401-API key hatası//429-Çok fazla istek gibi)
     cityNameEl.textContent = data.name;
     degreeEl.textContent = Math.round(data.main.temp) + "°";
     weatherEl.textContent = data.weather[0].description;
@@ -34,6 +82,8 @@ function display(data) {
     alert("Şehir bulunamadı!");
   }
 }
+
+// Keyboard shortcuts - YENİ EKLENEN
 document.addEventListener("keydown", (e) => {
   if (e.target === searchInput) return; // Input'a odaklanıldığında keyboard shortcuts çalışmasın
 
