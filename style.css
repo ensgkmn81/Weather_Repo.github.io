@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  font-family: "Poppins";
+  background-image: url("wp2.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+.background-carousel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.background-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.background-slide.active {
+  opacity: 1;
+}
+.slide-1 {
+  background-image: url("photos/p1.jpg");
+}
+.slide-2 {
+  background-image: url("photos/p2.jpg");
+}
+.slide-3 {
+  background-image: url("photos/p3.jpg");
+}
+.slide-4 {
+  background-image: url("photos/p4.jpg");
+}
+.slide-5 {
+  background-image: url("photos/p5.jpg");
+}
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.app {
+  box-shadow: 15px 20px 12px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  background-color: lightgray;
+  opacity: 0.7;
+  border-radius: 15px;
+  padding: 40px;
+  margin-top: 30px;
+  position: relative;
+  z-index: 10;
+}
+.header {
+  border: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  color: rgb(218, 148, 20);
+}
+#searchInput {
+  padding: 10px;
+  width: 100%;
+  outline: none;
+  background-color: transparent;
+  font-size: larger;
+  margin-top: 15px;
+  border-radius: 15px;
+}
+.content {
+  margin-top: 25px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+}
+.cityName {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.degree {
+  font-size: 65px;
+}
+.weather {
+  padding-left: -50px;
+  font-size: 20px;
+}
+.nav-controls {
+  position: fixed;
+  bottom: 30px;
+  left: 200px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px 25px;
+  border-radius: 30px;
+  backdrop-filter: blur(10px); /*arka planı bulanıklaştırır*/
+  z-index: 20;
+}
+nav-btn:hover {
+  background: rgba(255.255.255);
+  transform: scale(1.1); /*elementi 1.1 oranında büyütür */
+}
+nav-btn:active {
+  transform: scale(0.95);
+}
+/* Slide Indicators  */
+.slide-indicators {
+  display: flex;
+  gap: 8px;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.indicator.active {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
+}
+
+/* Auto-play toggle */
+.autoplay-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.autoplay-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.autoplay-btn.active {
+  background: rgba(76, 175, 80, 0.3);
+  border-color: rgba(76, 175, 80, 0.5);
+}

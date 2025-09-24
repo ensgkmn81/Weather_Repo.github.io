@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hava Durumu</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <!-- Background Carousel -->
+    <div class="background-carousel">
+      <div class="background-slide slide-1 active"></div>
+      <div class="background-slide slide-2"></div>
+      <div class="background-slide slide-3"></div>
+      <div class="background-slide slide-4"></div>
+      <div class="background-slide slide-5"></div>
+    </div>
+    <div class="container">
+      <div class="app">
+        <div class="header">
+          <h1 class="title">Hava Durumu</h1>
+          <input id="searchInput" type="text" placeholder="Şehir Seçiniz" />
+        </div>
+        <div class="content">
+          <div class="cityName">İstanbul</div>
+          <div class="degree">21°</div>
+          <div class="weather">Parçalı Bulutlu</div>
+        </div>
+      </div>
+    </div>
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+      <button class="nav-btn" id="prevBtn">‹</button>
+      <div class="slide-indicators">
+        <div class="indicator active" data-slide="0"></div>
+        <div class="indicator" data-slide="1"></div>
+        <div class="indicator" data-slide="2"></div>
+        <div class="indicator" data-slide="3"></div>
+        <div class="indicator" data-slide="4"></div>
+      </div>
+      <button class="nav-btn" id="nextBtn">›</button>
+      <button class="autoplay-btn active" id="autoplayBtn">⏸ Durdur</button>
+    </div>
+    <script src="api.js"></script>
+    <script src="main.js"></script>
+    <script src="carousel.js"></script>
+  </body>
+</html>
