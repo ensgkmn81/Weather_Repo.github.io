@@ -17,12 +17,15 @@ function findWeatherInfo(e) {
         console.log(data);
         display(data);
       })
-      .catch((err) => console.log(err));
-      alert("Şehir adı bulunamadı!Lütfen geçerli bir şehir adı giriniz.")
+      .catch((err) => {
+        alert("Şehir adı bulunamadı! Lütfen geçerli bir şehir adı giriniz.");
+        console.log(err);
+      });
   }
 }
 function display(data) {
-  if (data.cod === 200) {//? 200 başarılı olduğu anlamına geliyor(404-hata//401-API key hatası//429-Çok fazla istek gibi)
+  if (data.cod === 200) {
+    //? 200 başarılı olduğu anlamına geliyor(404-hata//401-API key hatası//429-Çok fazla istek gibi)
     cityNameEl.textContent = data.name;
     degreeEl.textContent = Math.round(data.main.temp) + "°";
     weatherEl.textContent = data.weather[0].description;
@@ -31,19 +34,19 @@ function display(data) {
     alert("Şehir bulunamadı!");
   }
 }
-// Keyboard shortcuts - YENİ EKLENEN
-document.addEventListener('keydown', (e) => {
+document.addEventListener("keydown", (e) => {
   if (e.target === searchInput) return; // Input'a odaklanıldığında keyboard shortcuts çalışmasın
-  
-  if (typeof carousel !== 'undefined') { // carousel tanımlı mı kontrol et
-    switch(e.key) {
-      case 'ArrowLeft':
+
+  if (typeof carousel !== "undefined") {
+    // carousel tanımlı mı kontrol et
+    switch (e.key) {
+      case "ArrowLeft":
         carousel.prevSlide();
         break;
-      case 'ArrowRight':
+      case "ArrowRight":
         carousel.nextSlide();
         break;
-      case ' ':
+      case " ":
         e.preventDefault();
         carousel.toggleAutoplay();
         break;
